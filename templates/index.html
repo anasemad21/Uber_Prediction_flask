@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uber Rides Prediction Model</title>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Arimo|Hind:300|Open+Sans+Condensed:300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Arimo', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1em;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .prediction {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Uber Rides Prediction</h1>
+        <form action="{{ url_for('predict') }}" method="post">
+            <input type="text" name="Priceperweek" placeholder="Price per week" required>
+            <input type="text" name="Population" placeholder="Population" required>
+            <input type="text" name="Monthlyincome" placeholder="Monthly income" required>
+            <input type="text" name="Averageparkingpermonth" placeholder="Average parking per month" required>
+            <button type="submit">Run</button>
+        </form>
+        <div class="prediction">{{ prediction_text }}</div>
+    </div>
+</body>
+
+</html>
